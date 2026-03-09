@@ -1,4 +1,4 @@
-# 🖥️ Portfólio | Juliano Xavier Diniz
+# 🖥️ Juliano Xavier Diniz
 
 **Backend & Systems Engineer** | Low-Level Computing Enthusiast | High Performance Computing
 
