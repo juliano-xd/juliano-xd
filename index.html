@@ -1,1 +1,931 @@
-<h1>hello!</h1>
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Portfólio de Juliano Xavier Diniz - Desenvolvedor Backend e Low-Level"
+        />
+        <title>Juliano Xavier Diniz | Backend & Systems Engineer</title>
+        <style>
+            /* --- Variáveis e Reset --- */
+            :root {
+                --bg-primary: #0f172a;
+                /* Azul noturno profundo */
+                --bg-secondary: #1e293b;
+                /* Azul ardósia escuro */
+                --text-primary: #f8fafc;
+                /* Branco gelo */
+                --text-secondary: #94a3b8;
+                /* Cinza azulado */
+                --accent: #38bdf8;
+                /* Azul ciano elétrico */
+                --accent-hover: #0ea5e9;
+                --success: #10b981;
+                /* Verde para métricas */
+                --code-bg: #020617;
+                --terminal-bg: #0d1117;
+                --font-main: "Inter", system-ui, -apple-system, sans-serif;
+                --font-mono: "JetBrains Mono", "Fira Code", monospace;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+
+            body {
+                font-family: var(--font-main);
+                background-color: var(--bg-primary);
+                color: var(--text-primary);
+                line-height: 1.6;
+                overflow-x: hidden;
+            }
+
+            /* --- Tipografia --- */
+            h1,
+            h2,
+            h3,
+            h4 {
+                font-weight: 700;
+                letter-spacing: -0.025em;
+            }
+
+            h2 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            h2::after {
+                content: "";
+                display: block;
+                height: 1px;
+                background: var(--secondary-bg);
+                /* Fallback */
+                background: linear-gradient(
+                    90deg,
+                    var(--accent) 0%,
+                    transparent 100%
+                );
+                flex-grow: 1;
+                opacity: 0.5;
+            }
+
+            a {
+                text-decoration: none;
+                color: inherit;
+                transition: all 0.2s ease;
+            }
+
+            /* --- Layout --- */
+            .container {
+                max-width: 1024px;
+                margin: 0 auto;
+                padding: 0 1.5rem;
+            }
+
+            section {
+                padding: 5rem 0;
+            }
+
+            /* --- Header / Hero --- */
+            header {
+                min-height: 90vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+            }
+
+            .mono-badge {
+                font-family: var(--font-mono);
+                color: var(--accent);
+                font-size: 1rem;
+                margin-bottom: 1rem;
+                display: inline-block;
+                background: rgba(56, 189, 248, 0.1);
+                padding: 0.25rem 0.75rem;
+                border-radius: 4px;
+            }
+
+            header h1 {
+                font-size: clamp(3rem, 8vw, 5rem);
+                line-height: 1.1;
+                margin-bottom: 1rem;
+                background: linear-gradient(to right, #fff, #94a3b8);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            header .subtitle {
+                font-size: clamp(1.2rem, 4vw, 1.5rem);
+                color: var(--text-secondary);
+                max-width: 600px;
+                margin-bottom: 2.5rem;
+            }
+
+            .cta-group {
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .btn {
+                padding: 0.75rem 1.5rem;
+                border-radius: 6px;
+                font-weight: 600;
+                border: 1px solid transparent;
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .btn-primary {
+                background-color: var(--accent);
+                color: var(--bg-primary);
+            }
+
+            .btn-primary:hover {
+                background-color: var(--accent-hover);
+                transform: translateY(-2px);
+            }
+
+            .btn-outline {
+                border-color: var(--text-secondary);
+                color: var(--text-primary);
+            }
+
+            .btn-outline:hover {
+                border-color: var(--accent);
+                color: var(--accent);
+            }
+
+            /* --- Sobre --- */
+            .about-grid {
+                display: grid;
+                grid-template-columns: 1.5fr 1fr;
+                gap: 3rem;
+            }
+
+            /* --- Skills / Tech Bars --- */
+            .skills-wrapper {
+                margin-top: 2rem;
+                display: flex;
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+
+            .skill-item {
+                width: 100%;
+            }
+
+            .skill-header {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 0.5rem;
+                font-family: var(--font-mono);
+                font-size: 0.85rem;
+                color: var(--text-secondary);
+            }
+
+            .skill-name {
+                color: var(--text-primary);
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+            }
+
+            .skill-name::before {
+                content: ">";
+                color: var(--accent);
+                margin-right: 8px;
+                font-weight: bold;
+            }
+
+            .skill-level {
+                color: var(--accent);
+            }
+
+            .skill-bar-bg {
+                width: 100%;
+                height: 6px;
+                background-color: var(--bg-secondary);
+                border-radius: 3px;
+                overflow: hidden;
+                position: relative;
+            }
+
+            .skill-bar-fill {
+                height: 100%;
+                background-color: var(--accent);
+                border-radius: 3px;
+                box-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+                /* Glow effect */
+            }
+
+            /* --- Learning / Studying Section --- */
+            .learning-wrapper {
+                margin-top: 1.5rem;
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .learning-item {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background-color: rgba(30, 41, 59, 0.5);
+                border: 1px dashed var(--text-secondary);
+                padding: 0.8rem 1rem;
+                border-radius: 6px;
+                font-family: var(--font-mono);
+                font-size: 0.9rem;
+            }
+
+            .learning-info {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                color: var(--text-primary);
+            }
+
+            .learning-badge {
+                font-size: 0.75rem;
+                background-color: rgba(56, 189, 248, 0.1);
+                color: var(--accent);
+                padding: 4px 8px;
+                border-radius: 4px;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+
+            .spinner {
+                width: 8px;
+                height: 8px;
+                border: 2px solid var(--accent);
+                border-top-color: transparent;
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+
+            @keyframes spin {
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+            /* --- Terminal AI CSS --- */
+            .terminal-window {
+                width: 100%;
+                height: 400px;
+                background-color: var(--terminal-bg);
+                border-radius: 8px;
+                border: 1px solid #30363d;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+                font-family: var(--font-mono);
+            }
+
+            .terminal-header {
+                background-color: #161b22;
+                padding: 8px 15px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                border-bottom: 1px solid #30363d;
+            }
+
+            .dot {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+            }
+
+            .red {
+                background-color: #ff5f56;
+            }
+
+            .yellow {
+                background-color: #ffbd2e;
+            }
+
+            .green {
+                background-color: #27c93f;
+            }
+
+            .terminal-title {
+                margin-left: 10px;
+                font-size: 0.8rem;
+                color: #8b949e;
+            }
+
+            .terminal-body {
+                flex: 1;
+                padding: 15px;
+                overflow-y: auto;
+                color: #c9d1d9;
+                font-size: 0.9rem;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .terminal-line {
+                display: block;
+                word-wrap: break-word;
+            }
+
+            .user-line {
+                color: var(--accent);
+            }
+
+            .user-line::before {
+                content: "$ ";
+                color: #8b949e;
+            }
+
+            .ai-line {
+                color: #c9d1d9;
+                white-space: pre-wrap;
+            }
+
+            .ai-line strong {
+                color: #fff;
+            }
+
+            .terminal-input-area {
+                display: flex;
+                padding: 10px 15px;
+                background-color: #0d1117;
+                border-top: 1px solid #30363d;
+            }
+
+            .prompt-symbol {
+                color: var(--accent);
+                margin-right: 8px;
+                user-select: none;
+            }
+
+            #terminalInput {
+                background: transparent;
+                border: none;
+                color: #fff;
+                flex: 1;
+                font-family: var(--font-mono);
+                font-size: 0.9rem;
+                outline: none;
+            }
+
+            .loading-cursor::after {
+                content: "▋";
+                animation: blink 1s step-start infinite;
+                color: var(--accent);
+            }
+
+            @keyframes blink {
+                50% {
+                    opacity: 0;
+                }
+            }
+
+            /* --- Projetos (Cards) --- */
+            .projects-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+
+            .project-card {
+                background-color: var(--bg-secondary);
+                padding: 2rem;
+                border-radius: 8px;
+                transition:
+                    transform 0.3s ease,
+                    box-shadow 0.3s ease;
+                position: relative;
+                top: 0;
+                border: 1px solid transparent;
+            }
+
+            .project-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+                border-color: rgba(56, 189, 248, 0.3);
+            }
+
+            .folder-icon {
+                width: 40px;
+                height: 40px;
+                color: var(--accent);
+                margin-bottom: 1.5rem;
+            }
+
+            .project-card h3 {
+                font-size: 1.5rem;
+                margin-bottom: 0.75rem;
+                color: var(--text-primary);
+            }
+
+            .project-card p {
+                color: var(--text-secondary);
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .project-tech {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                font-family: var(--font-mono);
+                font-size: 0.8rem;
+                color: var(--text-secondary);
+            }
+
+            .project-links {
+                position: absolute;
+                top: 2rem;
+                right: 2rem;
+                display: flex;
+                gap: 1rem;
+            }
+
+            .project-links a:hover {
+                color: var(--accent);
+            }
+
+            /* --- Footer --- */
+            footer {
+                text-align: center;
+                padding: 2rem;
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+                border-top: 1px solid var(--bg-secondary);
+            }
+
+            /* --- Mobile --- */
+            @media (max-width: 768px) {
+                header h1 {
+                    font-size: 3rem;
+                }
+
+                .about-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .terminal-window {
+                    height: 350px;
+                }
+
+                .article-card {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 1rem;
+                }
+
+                .article-arrow {
+                    display: none;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- HERO SECTION -->
+        <header class="container" id="home">
+            <span class="mono-badge">Olá, meu nome é</span>
+            <h1>Juliano Xavier Diniz.</h1>
+            <p class="subtitle">
+                Desenvolvedor Backend & Engenheiro de Software focado em
+                performance, sistemas de baixo nível e arquitetura escalável.
+            </p>
+            <div class="cta-group">
+                <a href="#projects" class="btn btn-primary">Ver Projetos</a>
+                <a
+                    href="#"
+                    class="btn btn-outline"
+                    title="Baixar Currículo em PDF"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path
+                            d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                        ></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Download CV
+                </a>
+                <a href="#contact" class="btn btn-outline">Contato</a>
+            </div>
+        </header>
+
+        <!-- SOBRE MIM -->
+        <section id="about" class="container">
+            <h2>
+                <span style="color: var(--accent); margin-right: 10px"
+                    >01.</span
+                >
+                Sobre Mim
+            </h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>
+                        Sou um desenvolvedor movido pelo desejo de dominar os
+                        fundamentos da computação. Minha jornada começou na
+                        curiosidade pelo hardware e evoluiu para o
+                        desenvolvimento de software, onde me encontrei na
+                        fronteira entre o código de alto nível e a execução
+                        bruta do sistema.
+                    </p>
+                    <br />
+                    <p>
+                        Hoje, dedico minha energia a explorar o gerenciamento de
+                        memória e a arquitetura de compiladores, utilizando
+                        <strong>C++</strong> e <strong>Assembly</strong> para
+                        projetar soluções onde a eficiência e a performance são
+                        prioridades absolutas.
+                    </p>
+
+                    <h3
+                        style="
+                            margin-top: 2rem;
+                            font-size: 1.1rem;
+                            margin-bottom: 0.5rem;
+                        "
+                    >
+                        Stack & Proficiência:
+                    </h3>
+
+                    <!-- Barras de Nível de Habilidade -->
+                    <div class="skills-wrapper">
+                        <!-- C++ -->
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">C++</span>
+                                <span class="skill-level">Avançado</span>
+                            </div>
+                            <div class="skill-bar-bg">
+                                <div
+                                    class="skill-bar-fill"
+                                    style="width: 85%"
+                                ></div>
+                            </div>
+                        </div>
+
+                        <!-- Assembly -->
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Assembly</span>
+                                <span class="skill-level">Intermediário</span>
+                            </div>
+                            <div class="skill-bar-bg">
+                                <div
+                                    class="skill-bar-fill"
+                                    style="width: 60%"
+                                ></div>
+                            </div>
+                        </div>
+
+                        <!-- Java -->
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Java</span>
+                                <span class="skill-level">Intermediário</span>
+                            </div>
+                            <div class="skill-bar-bg">
+                                <div
+                                    class="skill-bar-fill"
+                                    style="width: 55%"
+                                ></div>
+                            </div>
+                        </div>
+
+                        <!-- Kotlin -->
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Kotlin</span>
+                                <span class="skill-level">Intermediário</span>
+                            </div>
+                            <div class="skill-bar-bg">
+                                <div
+                                    class="skill-bar-fill"
+                                    style="width: 50%"
+                                ></div>
+                            </div>
+                        </div>
+
+                        <!-- Python -->
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Python</span>
+                                <span class="skill-level">Intermediário</span>
+                            </div>
+                            <div class="skill-bar-bg">
+                                <div
+                                    class="skill-bar-fill"
+                                    style="width: 50%"
+                                ></div>
+                            </div>
+                        </div>
+
+                        <!-- Tools -->
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Git & GitHub</span>
+                                <span class="skill-level">Intermediário</span>
+                            </div>
+                            <div class="skill-bar-bg">
+                                <div
+                                    class="skill-bar-fill"
+                                    style="width: 65%"
+                                ></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- NOVA SEÇÃO: ESTUDANDO ATUALMENTE -->
+                    <h3
+                        style="
+                            margin-top: 2rem;
+                            font-size: 1.1rem;
+                            margin-bottom: 0.5rem;
+                        "
+                    >
+                        Roadmap de Estudos 🚀:
+                    </h3>
+                    <div class="learning-wrapper">
+                        <!-- AWS Cloud -->
+                        <div class="learning-item">
+                            <div class="learning-info">
+                                <span class="learning-icon">☁️</span>
+                                <span class="learning-name"
+                                    >AWS Cloud Computing</span
+                                >
+                            </div>
+                            <span class="learning-badge">
+                                <div class="spinner"></div>
+                                Aprendendo
+                            </span>
+                        </div>
+
+                        <!-- Compiladores (Baseado na sua bio) -->
+                        <div class="learning-item">
+                            <div class="learning-info">
+                                <span class="learning-icon">⚙️</span>
+                                <span class="learning-name"
+                                    >Compiladores & LLVM</span
+                                >
+                            </div>
+                            <span class="learning-badge">
+                                <div class="spinner"></div>
+                                Aprofundando
+                            </span>
+                        </div>
+
+                        <!-- Memory Management (Baseado na sua bio) -->
+                        <div class="learning-item">
+                            <div class="learning-info">
+                                <span class="learning-icon">🧠</span>
+                                <span class="learning-name"
+                                    >Advanced Memory Mgmt</span
+                                >
+                            </div>
+                            <span class="learning-badge">
+                                <div class="spinner"></div>
+                                Pesquisando
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terminal AI Interativo -->
+                <div class="about-img">
+                    <div class="terminal-window">
+                        <div class="terminal-header">
+                            <div class="dot red"></div>
+                            <div class="dot yellow"></div>
+                            <div class="dot green"></div>
+                            <span class="terminal-title"
+                                >juliano@portfolio: ~/ai-assistant (Gemini
+                                Powered) ✨</span
+                            >
+                        </div>
+                        <div class="terminal-body" id="terminalOutput">
+                            <div class="ai-line">
+                                ./iniciar_assistente.sh<br />Sistema Online.<br />Olá!
+                                Eu sou a IA do portfólio do Juliano. Pergunte-me
+                                sobre os projetos dele, skills ou experiência em
+                                C++.
+                            </div>
+                        </div>
+                        <div class="terminal-input-area">
+                            <span class="prompt-symbol">$</span>
+                            <input
+                                type="text"
+                                id="terminalInput"
+                                placeholder="Digite um comando ou pergunta..."
+                                autocomplete="off"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJETOS -->
+        <section id="projects" class="container">
+            <h2>
+                <span style="color: var(--accent); margin-right: 10px"
+                    >02.</span
+                >
+                Projetos de Destaque
+            </h2>
+
+            <div class="projects-grid">
+                <!-- Projeto Principal: Arbitrary -->
+                <article class="project-card">
+                    <div class="project-links">
+                        <a
+                            href="https://juliano-xd.github.io/Arbitrary/"
+                            target="_blank"
+                            title="Ver Documentação"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path
+                                    d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                                ></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                        <a href="#" title="Ver Código Fonte">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path
+                                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                                ></path>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="folder-icon">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="40"
+                            height="40"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path
+                                d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"
+                            ></path>
+                        </svg>
+                    </div>
+                    <h3>Arbitrary Library</h3>
+                    <p>
+                        Uma biblioteca header-only otimizada para criptografia e
+                        cálculos pesados. Inteiros de tamanho fixo determinados
+                        em tempo de compilação, utilizando o máximo da sua CPU.
+                    </p>
+                    <div class="project-tech">
+                        <span>C++</span>
+                        <span>Cryptography</span>
+                        <span>High Performance Computing</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- CONTATO -->
+        <section
+            id="contact"
+            class="container"
+            style="text-align: center; max-width: 600px"
+        >
+            <h2>
+                <span style="color: var(--accent); margin-right: 10px"
+                    >03.</span
+                >
+                Vamos Conversar?
+            </h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem">
+                Estou sempre aberto a novas oportunidades e desafios técnicos,
+                especialmente aqueles que envolvem otimização e backend robusto.
+                Minha caixa de entrada está sempre aberta.
+            </p>
+            <a
+                href="mailto:juliano.prog.dev@gmail.com"
+                class="btn btn-primary"
+                style="padding: 1rem 2rem; font-size: 1.1rem"
+                >Diga Olá</a
+            >
+
+            <div
+                style="
+                    margin-top: 3rem;
+                    display: flex;
+                    justify-content: center;
+                    gap: 20px;
+                "
+            >
+                <!-- Links Sociais -->
+                <a
+                    href="https://github.com/juliano-xd"
+                    target="_blank"
+                    style="color: var(--text-secondary)"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path
+                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                        ></path>
+                    </svg>
+                </a>
+                <a
+                    href="https://www.linkedin.com/in/julianoxavierdiniz/"
+                    target="_blank"
+                    style="color: var(--text-secondary)"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path
+                            d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                        ></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <footer>
+            <p>Desenvolvido por Juliano Xavier Diniz &copy; 2025</p>
+        </footer>
+
+        <!-- Script Gemini API -->
+        <script src="script.js"></script>
+    </body>
+</html>
