@@ -49,26 +49,6 @@ Uma biblioteca header-only otimizada para criptografia e cálculos pesados. Inte
 
 ---
 
-## 📚 Características do Portfólio
-
-- ✨ **Design Responsivo** - Otimizado para desktop e mobile
-- 🎨 **Tema Escuro Moderno** - Paleta de cores inspirada em ambientes de desenvolvimento
-- 💬 **Assistente de IA** - Terminal interativo alimentado por Gemini API
-- ⚡ **Performance Otimizada** - Código HTML/CSS limpo e semanticamente correto
-- 🎯 **UX/UI Intuitiva** - Navegação smooth e seções bem estruturadas
-
----
-
-## 🌐 Seções do Portfólio
-
-- **Hero** - Apresentação com CTA (Call-to-Action)
-- **Sobre Mim** - Biografia, skills e roadmap de estudos
-- **Terminal IA** - Assistente interativo para consultas
-- **Projetos** - Galeria de projetos destacados
-- **Contato** - Links sociais (GitHub, LinkedIn) e email
-
----
-
 ## 📞 Entre em Contato
 
 - 📧 **Email:** [juliano.prog.dev@gmail.com](mailto:juliano.prog.dev@gmail.com)
